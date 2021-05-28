@@ -1,9 +1,9 @@
-const express = require('express'); // Busca el modulo express el las dependencias del paquete json.
+const express = require('express'); /* Busca el modulo express el las dependencias del paquete json. */
 const bcrypt = require('bcrypt'); 
 const cors = require('cors');
 const knex = require('knex');
 
-const app = express(); // Representa el modulo express derivado de la funcion.
+const app = express(); /* Representa el modulo express derivado de la funcion. */
 
 app.use(express.json());
 app.use(cors());
@@ -43,12 +43,10 @@ const database = {
   ]
 };
 
-app.listen( 3000, () => console.log("Servidor -J- iniciado") ); 
-
 app.get('/', (req, res) => {
   res.send(database.usuarios);
 });
-// Establece la accion cuando un externo hace un pedido a nuestro servidor.
+/* Establece la accion cuando un externo hace un pedido a nuestro servidor. */
 
 app.get('/usuario/:id', (req, res) => {
   const {id} = req.params;
@@ -90,8 +88,8 @@ app.post('/register', (req, res) => {
     .catch( err => res.status(404).json('El usuario o correo ya existe'))
 }); 
 
-// Escucha el puerto establecido para pedidos http hacia nuestro servidor, 
-//     2do parametro especifica una acción cuando el server inicia.
+/* Escucha el puerto establecido para pedidos http hacia nuestro servidor, 
+  2do parametro especifica una acción cuando el server inicia. */
 
   // bcrypt.genSalt(10, function(err, salt) {
   //   bcrypt.hash('juli', salt, function(err, hash) {
@@ -126,11 +124,5 @@ function calcularFecha() {
   return fechaHoy;
 } 
 
-
-
-
-
-
-
-
-
+app.listen( process.env.PORT || 3030, () => console.log("Servidor -J- iniciado") ); 
+/*  process.env.PORT es para el servidor de heroku una vez que este subido a esa web */
